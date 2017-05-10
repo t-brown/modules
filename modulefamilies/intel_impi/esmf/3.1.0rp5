@@ -1,0 +1,43 @@
+#%Module######################################################################
+##
+##      esmf 3.1.0rp5 (Optmized); Intel compiler
+##      Installed by:  Raghu Reddy (Raghu.Reddy@noaa.gov)
+##                     Followed instructions by Gherard
+##	Installed on:  2014/12/28
+
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use esmf 3.1.0rp5"
+	puts stderr "Note: To used with Intel compiler"
+}
+
+set ESMF_BOPT	O
+set sys         [uname sysname]
+set ver         3.1.0rp5
+set base        /apps/esmf/$ver/intel/intelmpi
+set path        $base
+
+set config	Linux.intel.64.intelmpi.default
+
+if { $sys == "Linux" } {
+   setenv ESMF_DIR              $base
+   setenv ESMFMKFILE            "$base/lib/lib${ESMF_BOPT}/$config/esmf.mk"
+   setenv ESMF_LIB              "$base/lib/lib${ESMF_BOPT}/$config"
+   setenv ESMF_MOD		"$base/mod/mod${ESMF_BOPT}/$config"
+   setenv ESMF_INC		"$base/include"
+
+#   setenv ESMF_INCLUDE_OPTS     " -I$base/include"
+#   setenv ESMF_POST_LINK_OPTS   " -L$base/lib/lib${ESMF_BOPT}/$config -lesmf"
+#   setenv ESMF_POST_COMPILE_OPTS " -I$base/mod/mod${ESMF_BOPT}/$config"
+#
+#   setenv ESMF_BOPT             $ESMF_BOPT
+#   setenv ESMF_ARCH             Linux
+#   setenv ESMF_COMPILER         intel
+#   setenv ESMF_PREC             64
+#   setenv ESMF_COMM             mpi
+#   setenv ESMF_SITE             default
+
+   prepend-path LD_LIBRARY_PATH $base/lib/lib${ESMF_BOPT}/$config
+
+}
+
+conflict esmf

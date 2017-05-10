@@ -1,0 +1,21 @@
+#%Module######################################################################
+##
+##      g2lib
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use g2lib"
+}
+
+set sys         [uname sysname]
+set base        /apps/g2lib
+set ver         1.4.0-intel
+set path        $base/$ver
+
+setenv G2LIB $path
+
+if { $sys == "Linux" } {
+   setenv G2LIB_INC            " -I$path/include"
+   setenv G2LIB_POST_LINK_OPTS " -L$path/lib -lg2"
+}
+
+conflict g2lib

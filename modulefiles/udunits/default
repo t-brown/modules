@@ -1,0 +1,19 @@
+#%Module######################################
+# note that this is read by a Tcl interpretor
+#
+proc ModulesHelp { } {
+puts stderr "\tudunits - sets up the Udunits management environment.\n"
+}
+
+module-whatis "loads the default Udunits management environment"
+
+set sys         [uname sysname]
+set base        /apps/udunits
+set version     2.1.24
+set base        $base/$version
+
+setenv UDUNITS $base
+prepend-path PATH $base/bin
+prepend-path MANPATH $base/man
+
+conflict udunits

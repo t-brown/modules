@@ -1,0 +1,25 @@
+#%Module######################################################################
+##
+##   hpss
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use hpss"
+}
+
+set sys         [uname sysname]
+set base        /apps/hpss
+set ver         hpss
+set path        /apps/hpss
+
+   prepend-path PATH $path
+
+# Per CM #810; raghu.reddy, 2015/06/02
+# Useful link found by Nathan: Fixed on 2015/06/02
+# http://sourceforge.net/p/modules/mailman/message/2787339/
+
+   set-alias htar {htar -T 4}
+
+#   prepend-path LD_LIBRARY_PATH $path/bin/glnxa64
+#   prepend-path PYTHONPATH $path/lib64/python2.6/site-packages
+
+conflict hpss

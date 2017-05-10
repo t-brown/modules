@@ -1,0 +1,21 @@
+#%Module######################################################################
+##
+##     szip
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use szip"
+}
+
+set version 2.1
+
+##conflict szip
+
+set base /apps/szip/$version
+append-path LD_LIBRARY_PATH $base/lib
+
+setenv SZIP $base
+
+setenv SZIP_INCLUDE_OPTS " -I$base/include"
+setenv SZIP_LINK_OPTS " -L$base/lib -lsz"
+
+conflict szip

@@ -1,0 +1,17 @@
+#%Module######################################################################
+##
+##     rocoto
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use rocoto"
+}
+
+set sys         [uname sysname]
+set base        /apps/rocoto
+set ver         1.1
+set path        $base/$ver
+
+   prepend-path PATH $path/bin
+   prepend-path MANPATH $path/man
+
+conflict rocoto

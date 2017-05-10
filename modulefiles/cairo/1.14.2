@@ -1,0 +1,26 @@
+#%Module######################################
+# note that this is read by a Tcl interpretor
+#
+proc ModulesHelp { } {
+global path version
+puts stderr "\tncarg - sets up the CAIRO software" 
+puts stderr "\tPath $path/*\n"
+puts stderr "\tVersion $version\n"
+}
+
+module-whatis "loads the CAIRO Graphics Library"
+
+conflict cairo
+
+set version 1.14.2
+set path /apps/cairo/$version
+
+setenv CAIRO $path
+
+prepend-path PATH $path/bin
+prepend-path LIBRARY_PATH $path/lib
+prepend-path LD_LIBRARY_PATH $path/lib
+prepend-path INCLUDE_PATH $path/include
+
+setenv NCARG_LIBPATH "-L$path/lib"
+

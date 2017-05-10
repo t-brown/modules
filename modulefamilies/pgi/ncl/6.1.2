@@ -1,0 +1,23 @@
+#%Module######################################################################
+##
+##     NCL
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use NCL"
+}
+
+set sys         [uname sysname]
+set base        /apps/ncl
+set ver         6.1.2
+set ver         6.1.2-nodap_gcc446
+set path        $base/$ver
+
+prepend-path PATH $path/pgi.bin
+setenv NCARG_ROOT $base/$ver
+setenv NCARG_INC $base/$ver/include
+setenv NCARG_LIB $base/$ver/lib
+setenv NCARG_BIN $base/$ver/pgi.bin
+
+setenv NCARG_RANGS /apps/ncl/rangs
+
+conflict ncl

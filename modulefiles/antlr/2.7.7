@@ -1,0 +1,26 @@
+#%Module######################################################################
+##
+##      antlr 2.7.7
+##      Installed by:  Raghu Reddy (Raghu.Reddy@noaa.gov)
+##      Installed on:  2014/12/27
+
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use antlr 2.7.7"
+}
+
+set sys         [uname sysname]
+set base        /apps/antlr/2.7.7
+set ver         2.7.7
+set path        $base
+
+if { $sys == "Linux" } {
+   setenv ANTLR_ROOT         $base
+   prepend-path CLASSPATH    .:$base/antlr-2.7.7-complete.jar
+
+# Currently not working; Need to figure out how. --Raghu
+#
+   set-alias antlr2 "java -jar    $base/antlr-2.7.7-complete.jar"
+   set-alias grun   "java org.antlr.v4.runtime.misc.TestRig"
+}
+
+conflict antlr

@@ -1,0 +1,16 @@
+#%Module######################################################################
+##
+##      bbftp-server
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use bbftp-server"
+}
+
+set sys         [uname sysname]
+set base        /apps/bbftp-server
+set ver         3.2.1
+set path        $base/$ver
+
+if { $sys == "Linux" } {
+   prepend-path PATH $path/bin
+}

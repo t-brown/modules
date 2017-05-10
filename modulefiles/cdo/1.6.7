@@ -1,0 +1,88 @@
+#%Module######################################################################
+##
+##      cdo
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use CDO"
+}
+
+set sys         [uname sysname]
+set base        /apps/cdo
+set ver         1.6.7
+set path        $base/$ver
+
+# This file was copied from zeus and edited
+# I don't know why this is set, but leaving it there.
+# May be it is supposed to be CDO? -Raghu
+setenv NCO $path
+
+if { $sys == "Linux" } {
+   prepend-path PATH $path/bin
+   prepend-path LD_LIBRARY_PATH $path/lib
+   setenv CDO_INCLUDE_OPTS " -I $path/include"
+}
+
+# This needs the Intel module
+if { [ module-info mode load ]} {
+        if { ! [ is-loaded intel ]} {
+                module load intel
+        }
+}
+
+if { [ module-info mode remove ]} {
+        if { [ is-loaded intel ]} {
+                module unload intel
+        }
+}
+
+# This needs the szip module
+if { [ module-info mode load ]} {
+        if { ! [ is-loaded szip ]} {
+                module load szip
+        }
+}
+
+if { [ module-info mode remove ]} {
+        if { [ is-loaded szip ]} {
+                module unload szip
+        }
+}
+
+# This needs the Hdf5 module
+if { [ module-info mode load ]} {
+        if { ! [ is-loaded hdf5 ]} {
+                module load hdf5
+        }
+}
+
+if { [ module-info mode remove ]} {
+        if { [ is-loaded hdf5 ]} {
+                module unload hdf5
+        }
+}
+
+# This needs the Netcdf module
+if { [ module-info mode load ]} {
+        if { ! [ is-loaded netcdf ]} {
+                module load netcdf
+        }
+}
+
+if { [ module-info mode remove ]} {
+        if { [ is-loaded netcdf ]} {
+                module unload netcdf
+        }
+}
+
+# This needs the Grib_Api module
+if { [ module-info mode load ]} {
+        if { ! [ is-loaded grib_api ]} {
+                module load grib_api
+        }
+}
+
+if { [ module-info mode remove ]} {
+        if { [ is-loaded grib_api ]} {
+                module unload grib_api
+        }
+}

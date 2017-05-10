@@ -1,0 +1,40 @@
+#%Module######################################################################
+##
+##    GEMPAK (GNU version)
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use GEMPAK"
+}
+
+set sys         [uname sysname]
+set base        /apps/gempak
+set ver         6.7.0
+
+  prepend-path PATH $base/$ver/bin
+  prepend-path PATH $base/$ver/os/linux64/bin
+  prepend-path XUSERFILESEARCHPATH $base/$ver/resource/%N
+
+  setenv NAWIPS     $base/$ver
+  setenv NA_OS      linux64
+  setenv GEMPAK     $base/$ver/gempak
+  setenv GEMPAKHOME $base/$ver/gempak
+  setenv CONFIGDIR  $base/$ver/config
+  setenv OS_ROOT    $base/$ver/os/linux64
+  setenv OS_BIN     $base/$ver/os/linux64/bin
+  setenv OS_INC     $base/$ver/os/linux64/include
+  setenv OS_LIB     $base/$ver/os/linux64/lib
+  setenv GEMLIB     $base/$ver/os/linux64/lib
+  setenv GEMEXE     $base/$ver/os/linux64/bin
+  setenv GEMPDF     $base/$ver/gempak/pdf
+  setenv GEMTBL     $base/$ver/gempak/tables
+  setenv GEMERR     $base/$ver/gempak/error
+  setenv GEMHLP     $base/$ver/gempak/help
+  setenv GEMMAPS    $base/$ver/gempak/maps
+  setenv GEMNTS     $base/$ver/gempak/nts
+  setenv GEMPARM    $base/$ver/gempak/parm
+  setenv GEMPTXT    $base/$ver/gempak/txt/programs
+  setenv GEMGTXT    $base/$ver/gempak/txt/gemlib
+  setenv NMAP_RESTORE        $base/$ver/gempak/nts/nmap/restore
+  setenv MEL_BUFR            $base/$ver/extlibs/melBUFR/melbufr
+  setenv MEL_BUFR_TABLES     $base/$ver/gempak/tables/melbufr
+  setenv GRPHGD              $::env(HOME)

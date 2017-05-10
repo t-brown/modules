@@ -1,0 +1,31 @@
+#%Module1.0
+#
+#
+
+proc ModulesHelp { } {
+	global	version
+
+	puts stderr "mvapich2-pgi-$version - Enables the use of mvapich2 with PGI v/14.10 support.\n"
+}
+
+module-whatis "Enable the use of mvapich2 with PGI 14.10 compiler support"
+
+# For TCL script only
+set	version	2.1rc1
+set     topdir /apps/mvapich2/$version-pgi
+
+prepend-path	PATH	$topdir/bin
+prepend-path	MANPATH	$topdir/share/man
+prepend-path	LD_LIBRARY_PATH	$topdir/lib
+prepend-path	CPATH	$topdir/include
+
+setenv MPIROOT $topdir
+
+# Only allow one instance of MPI to load
+conflict impi,mvapich2
+family mpi
+
+# Setup File families
+append-path MODULEPATH /apps/modules/modulefamilies/pgi_mvapich2
+
+conflict mvapich2

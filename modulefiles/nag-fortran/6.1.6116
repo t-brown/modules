@@ -1,0 +1,19 @@
+#%Module 6.1 #####################################################################
+
+proc ModulesHelp { } {
+    global helpmsg
+    puts stderr "\t$helpmsg\n"
+}
+
+set version 6.1
+set major 6
+set minor 1
+setenv NAG_KUSARI_FILE 140.208.200.147:7733
+set topdir /apps/nag-fortran/
+
+prepend-path PATH            $topdir/bin
+#prepend-path LIBRARY_PATH    $topdir/lib
+#prepend-path LD_LIBRARY_PATH $topdir/lib
+
+#prepend-path INCLUDE         $topdir/include
+#prepend-path MANPATH         $topdir/man

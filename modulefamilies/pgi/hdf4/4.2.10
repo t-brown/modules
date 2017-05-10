@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##     hdf4
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use hdf4"
+}
+
+set sys         [uname sysname]
+set base        /apps/hdf4
+set ver         4.2.10-pgi
+set path        $base/$ver
+
+   setenv HDF4 $path
+   prepend-path PATH $path/bin
+   prepend-path MANPATH $path/share/man
+
+conflict hdf4

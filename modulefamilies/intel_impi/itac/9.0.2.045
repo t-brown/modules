@@ -1,0 +1,54 @@
+#%Module1.0
+#
+#
+
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "itac - Enables use of the intel version of Intel Trace Analyzer"
+}
+
+module-whatis "Enables Intel Trace Analyzer"
+
+set     version 9.0.2.045
+set     topdir  /apps/intel/itac/$version
+
+# prepend-path    PATH                    $topdir/intel64/bin
+# prepend-path    LD_LIBRARY_PATH         $topdir/intel64/lib
+# prepend-path    MANPATH                 $topdir/man
+
+# vtune_amplifier_xe/amplxe-vars.csh
+setenv VTUNE_AMPLIFIER_XE_2015_DIR /apps/intel/vtune_amplifier_xe_2015
+prepend-path    PATH               /apps/intel/vtune_amplifier_xe_2015/bin64
+
+# inspector_xe/inspxe-vars.csh
+setenv INSPECTOR_2015_DIR          /apps/intel/inspector_xe
+prepend-path    PATH               /apps/intel/inspector_xe/bin64
+
+# advisor_xe/advixe-vars.csh
+setenv ADVISOR_XE_2015_DIR         /apps/intel/advisor_xe
+prepend-path    PATH               /apps/intel/advisor_xe/bin64
+
+# itac_latest/bin/itacvars.csh
+set vt_root                        /apps/intel/itac/$version
+set vt_arch                        intel64
+set vt_root_arch                   ${vt_root}/${vt_arch}
+
+setenv VT_ROOT                     $vt_root
+setenv VT_ARCH                     $vt_arch
+
+# VT_LIB_DIR, VT_SLIB_DIR, VT_ADD_LIBS:
+setenv VT_MPI                      "impi4"
+setenv VT_LIB_DIR                  "$vt_root_arch/lib"
+setenv VT_SLIB_DIR                 "$vt_root_arch/slib"
+setenv VT_MIC_SLIB_DIR             "$vt_root/mic/slib"
+setenv VT_ADD_LIBS                 "-ldwarf -lelf -lvtunwind -lnsl -lm -ldl -lpthread"
+
+prepend-path LD_LIBRARY_PATH       "$vt_root_arch/slib:$vt_root/mic/slib"
+prepend-path PATH                  "${vt_root_arch}/bin"
+
+prepend-path MANPATH               "${vt_root}/man"
+prepend-path CLASSPATH             "$vt_root_arch/lib"
+
+# parallel_studio_xe_2015/psxevars.csh
+prepend-path PATH                  /apps/intel/bin

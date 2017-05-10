@@ -1,0 +1,21 @@
+#%Module######################################################################
+##
+##      cdo
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use CDO"
+}
+
+set sys         [uname sysname]
+set base        /apps/cdo
+set ver         1.7.2
+set comp        intel/15.6.233
+set path        $base/$ver/$comp
+
+setenv CDO_ROOT      $path
+
+if { $sys == "Linux" } {
+   prepend-path  PATH             $path/bin
+#   prepend-path  LD_LIBRARY_PATH  $path/lib
+#   setenv        CDO_INCLUDE_OPTS " -I $path/include"
+}

@@ -1,0 +1,49 @@
+#%Module######################################################################
+##
+##     ferret
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use ferret"
+}
+
+set sys         [uname sysname]
+set base        /apps/ferret
+set ver         6.72
+set path        $base/$ver
+
+# These options are replicating what is in ferret_paths_template
+set FER_DIR $path
+setenv FER_DIR $FER_DIR
+
+set FER_DSETS $FER_DIR/fer_dsets
+setenv FER_DSETS $FER_DSETS
+
+# This needs to be resovled, what to do
+setenv FER_WEB_BROWSER ""
+
+# Since JAVA_HOME is on the path, it doesn't need to be set
+#setenv JAVA_HOME /usr/bin/
+#
+
+prepend-path PATH $FER_DIR/bin
+prepend-path LD_LIBRARY_PATH $FER_DIR/lib
+
+setenv FER_DATA_THREDDS "http://ferret.pmel.noaa.gov/geoide/geoIDECleanCatalog.xml $FER_DIR/fer_dsets"
+
+setenv FER_DATA ". $FER_DSETS/data $FER_DIR/go $FER_DIR/examples"
+setenv FER_DESCR ". $FER_DSETS/descr"
+setenv FER_GRIDS ". $FER_DSETS/grids"
+setenv FER_GO ". $FER_DIR/go $FER_DIR/examples $FER_DIR/contrib"
+
+setenv FER_EXTERNAL_FUNCTIONS $FER_DIR/ext_func/libs
+
+setenv FER_PALETTE $FER_DIR/ppl
+setenv FER_SPECTRA $FER_DIR/ppl
+
+setenv FER_FONTS $FER_DIR/ppl/fonts
+setenv PLOTFONTS $FER_DIR/ppl/fonts
+
+setenv FER_LIBS $FER_DIR/libs
+setenv FER_DAT $FER_DIR
+
+conflict ferret

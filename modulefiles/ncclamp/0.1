@@ -1,0 +1,15 @@
+#%Module######################################################################
+##
+##     ncclamp
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use ncclamp"
+}
+
+module-whatis "ncclamp is a command-line tool for NetCDF files that allows you to replace values in-place by 
+specifying the variable, the old value to be replaced, the new value, and a comparison operator.  The change 
+is applied across all of the variable's dimensions, including the record dimension if any."
+
+prepend-path PATH /apps/ncclamp/0.1/bin
+
+conflict ncclamp

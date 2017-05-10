@@ -1,0 +1,42 @@
+#%Module######################################################################
+##
+##      intel compiler modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use Beta Intel 12.0.xxx C, Fortran, and MKL tools."
+}
+
+set ver 12-12.0.4.191
+
+prepend-path	 MANPATH /apps/intel/composerxe-2011.4.191/man/en_US 
+
+prepend-path     LD_LIBRARY_PATH /apps/intel/composerxe-2011.4.191/composerxe-2011.4.191/debugger/lib/intel64
+prepend-path	 LD_LIBRARY_PATH /apps/intel/composerxe-2011.4.191/composerxe-2011.4.191/compiler/lib/intel64
+prepend-path	 LD_LIBRARY_PATH /apps/intel/composerxe-2011.4.191/mkl/lib/intel64 
+
+prepend-path	 NLSPATH /apps/intel/composerxe-2011.4.191/lib/intel64/locale/en_US/%N 
+
+prepend-path	 PATH /apps/intel/composerxe-2011.4.191/composerxe-2011.4.191/bin/intel64 
+
+prepend-path	 INTEL_LICENSE_FILE /apps/intel/server.lic 
+
+setenv		 MKLROOT /apps/intel/composerxe-2011.4.191/mkl 
+
+prepend-path	 LIBRARY_PATH /apps/intel/composerxe-2011.4.191/mkl/lib/intel64 
+
+prepend-path	 FPATH /apps/intel/composerxe-2011.4.191/mkl/include 
+
+prepend-path	 CPATH /apps/intel/composerxe-2011.4.191/mkl/include 
+
+prepend-path	 INCLUDE /apps/intel/composerxe-2011.4.191/mkl/include 
+
+setenv MPICC_CC icc
+setenv MPICXX_CXX icpc
+setenv MPIF90_F90 ifort
+
+# Only allow one instance of compiler to load
+conflict pgi,intel
+family compiler
+
+# Setup File families
+append-path MODULEPATH /apps/modules/modulefamilies/intel

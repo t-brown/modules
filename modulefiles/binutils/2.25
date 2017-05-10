@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##     binutils
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use binutils"
+}
+
+set sys         [uname sysname]
+set base        /apps/binutils
+set ver         2.25
+set path        $base/$ver
+
+   setenv BINUTILS $path
+   prepend-path PATH $path/bin
+   prepend-path LD_LIBRARY_PATH $path/lib
+
+conflict binutils

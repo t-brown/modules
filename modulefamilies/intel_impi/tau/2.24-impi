@@ -1,0 +1,30 @@
+#%Module######################################################################
+##
+##      tau
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use tau"
+}
+
+set sys         [uname sysname]
+set base        /apps/tau
+set arch        x86_64
+set ver         2.24-intel-impi
+set path        $base/$ver
+
+
+if { $sys == "Linux" } {
+   prepend-path PATH $path/$arch/bin
+   prepend-path MANPATH $path/man
+   prepend-path LD_LIBRARY_PATH $path/$arch/lib
+   prepend-path CLASSPATH $path/$arch/lib
+
+   setenv TAU_ROOT         $path/$arch
+   setenv TAU_ARCH         $arch
+   setenv TAU_INCLUDE_OPTS " -I $path/include"
+   setenv TAU_POST_LINK_OPTS " -L $path/$arch/lib -l TAU"
+   setenv TAULIBDIR        $path/$arch/lib
+   setenv TAU_MAKEFILE     $path/$arch/lib/Makefile.tau-icpc-mpi-pdt
+}
+
+conflict tau

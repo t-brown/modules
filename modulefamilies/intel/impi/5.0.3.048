@@ -1,0 +1,36 @@
+#%Module1.0
+#
+#
+
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "Inte MPI - Enables use of the intel version of the Message Passing Interface"
+}
+
+module-whatis "Enables Intel MPI"
+
+set     version 5.0.3.048
+set     topdir  /apps/intel/impi/$version
+
+prepend-path	PATH	$topdir/intel64/bin
+prepend-path	LD_LIBRARY_PATH		$topdir/intel64/lib
+prepend-path	MANPATH		$topdir/man
+
+setenv	I_MPI_ROOT	$topdir
+setenv	I_MPI_FABRICS	shm:tmi
+setenv	I_MPI_TMI_PROVIDER	psm
+
+# To have the stack trace for Fortran programs when using tmi fabrics
+setenv IPATH_NO_BACKTRACE 1
+
+# Per CM 1166 regarding long startup time
+setenv I_MPI_HYDRA_BRANCH_COUNT 128
+setenv I_MPI_HYDRA_PMI_CONNECT  alltoall
+
+# Only allow one instance of MPI to load
+conflict impi,mvapich2
+family mpi
+
+# Setup File families
+append-path MODULEPATH /apps/modules/modulefamilies/intel_impi

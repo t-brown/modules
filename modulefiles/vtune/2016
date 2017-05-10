@@ -1,0 +1,29 @@
+#%Module######################################################################
+##
+##      intel vtune modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use Intel Vtune Amplifier XE"
+}
+
+set sys         [uname sysname]
+set mach        [uname machine]
+set base        /apps/intel
+set ver         vtune_amplifier_xe_2016
+set path        $base/$ver
+
+
+if { [file exists "/bin/uname"] } {
+   set mach [ exec /bin/uname -m ]
+}
+
+if { $sys == "Linux" } {
+   if { $mach == "x86_64" } {
+      set arch intel64
+   } elseif { $mach == "i686" } {
+      set arch ia32
+   }
+   prepend-path MANPATH $path/man
+   prepend-path PATH $path/bin64
+   prepend-path    INTEL_LICENSE_FILE      $base/licenses
+}

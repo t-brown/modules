@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##      g2clib
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use g2clib"
+}
+
+set sys         [uname sysname]
+set base        /apps/g2clib
+set ver         1.4.0
+set path        $base/$ver
+
+if { $sys == "Linux" } {
+   setenv G2CLIB_POST_LINK_OPTS " -L $path/lib -l grib2c"
+}
+
+conflict g2clib

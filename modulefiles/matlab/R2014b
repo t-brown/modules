@@ -1,0 +1,16 @@
+#%Module######################################################################
+##
+##   numpy 
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use matlab"
+}
+
+set sys         [uname sysname]
+set base        /apps/matlab
+set ver         R2014b
+set path        $base/$ver
+
+   prepend-path PATH $path/bin
+   prepend-path LD_LIBRARY_PATH $path/bin/glnxa64:/apps/matlab/$ver/sys/opengl/lib/glnxa64
+#   prepend-path PYTHONPATH $path/lib64/python2.6/site-packages

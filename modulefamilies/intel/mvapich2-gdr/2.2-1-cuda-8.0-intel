@@ -1,0 +1,39 @@
+#%Module1.0
+#
+#
+
+proc ModulesHelp { } {
+        global  version
+
+        puts stderr "mvapich2-gdr-$version - Enables the use of mvapich2-gdr with Intel support.\n"
+}
+
+module-whatis "Enable the use of mvapich2-gdr"
+
+# For TCL script only
+set     version 2.2-1
+set     topdir            /apps/mvapich2-gdr-cuda8.0-intel/$version
+set     top_gdr_dir       /apps/gdrcopy/0.0.0
+
+prepend-path    PATH            $topdir/bin
+prepend-path    MANPATH         $topdir/share/man
+prepend-path    LD_LIBRARY_PATH $topdir/lib
+prepend-path    CPATH           $topdir/include
+#prepend-path   LD_PRELOAD      $topdir/lib64/libmpi.so
+
+setenv          MPIROOT                 $topdir
+
+setenv          MV2_USE_CUDA            1
+setenv          MPICH_RDMA_ENABLED_CUDA 1
+
+setenv          GDRCOPY_ROOT                 $top_gdr_dir
+#setenv          MV2_GPUDIRECT_GDRCOPY_LIB    $top_gdr_dir/lib/libgdrapi.so
+setenv          MV2_GPUDIRECT_GDRCOPY_LIB    $top_gdr_dir/libgdrapi.so
+setenv          MV2_USE_GPUDIRECT_GDRCOPY    0
+
+# Only allow one instance of MPI to load
+conflict impi,mvapich2,mvapich2-gdr
+family mpi
+
+# Setup File families
+append-path MODULEPATH /apps/modules/modulefamilies/intel_mvapich2

@@ -1,0 +1,14 @@
+#%Module######################################################################
+##
+##     nccmp
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use nccmp"
+}
+
+module-whatis "Compares 2 NetCDF files"
+
+prepend-path PATH /apps/nccmp/1.4.0/bin
+
+prereq intel
+conflict nccmp

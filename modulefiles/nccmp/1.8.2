@@ -1,0 +1,19 @@
+#%Module######################################################################
+##
+##     nccmp
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use nccmp"
+}
+
+module-whatis "Compares 2 NetCDF files"
+
+set sys         [uname sysname]
+set base        /apps/nccmp
+set ver         1.8.2-gcc
+set path        $base/$ver
+
+prepend-path PATH            $path/bin
+prepend-path MANPATH         $path/share/man
+
+conflict nccmp

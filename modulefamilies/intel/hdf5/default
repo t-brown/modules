@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##     hdf5
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use hdf5"
+}
+
+set sys         [uname sysname]
+set base        /apps/hdf5
+set ver         1.8.14-intel
+set path        $base/$ver
+
+   setenv HDF5 $path
+   prepend-path PATH $path/bin
+   prepend-path LD_LIBRARY_PATH $path/lib
+
+conflict hdf5

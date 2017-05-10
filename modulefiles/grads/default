@@ -1,0 +1,23 @@
+#%Module######################################################################
+##
+##      GrADS 2.0.1a
+##      Installed by:  Raghu Reddy (Raghu.Reddy@noaa.gov)
+##      Installed on:  2014/12/27
+
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use GrADS 2.0.1a"
+}
+
+set sys         [uname sysname]
+set base        /apps/grads
+set ver         2.0.1a
+set path        $base
+
+if { $sys == "Linux" } {
+   setenv GRADS_ROOT    $base
+   setenv GADDIR        $base/data
+   append-path GASCRP   $base/scripts
+   prepend-path PATH    $base/$ver/bin
+}
+
+conflict grads

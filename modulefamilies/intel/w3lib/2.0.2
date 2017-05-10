@@ -1,0 +1,25 @@
+#%Module1.0
+#
+# Enables w3lib for use in intel env
+#
+
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "Enables the use of the w3lib lib  \
+package (libraries, includes) in the local environment"
+
+}
+
+module-whatis "Enable use of w3lib "
+
+set     version 2.0.2-intel
+set     root    /apps/w3lib/$version
+
+setenv          W3LIB           $root
+#prepend-path	FPATH		$root
+#prepend-path    CPATH   	$root
+#prepend-path    MANPATH 	$root/share/man # Does not have manpages
+#prepend-path    LD_LIBRARY_PATH $root/lib      # No shared libs
+
+conflict w3lib

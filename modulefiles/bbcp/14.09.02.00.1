@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##      bbcp
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use bbcp"
+}
+
+set sys         [uname sysname]
+set base        /apps/bbcp
+set ver         14.09.02.00.1 
+set path        $base/$ver
+
+if { $sys == "Linux" } {
+   prepend-path PATH $path/bin
+}
+
+conflict bbcp

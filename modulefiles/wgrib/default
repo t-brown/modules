@@ -1,0 +1,13 @@
+#%Module######################################################################
+##
+##      intel compiler modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use wgrib"
+}
+set base  /apps/wgrib
+set ver 1.8.1.0b
+
+prepend-path PATH $base/$ver/bin
+
+conflict wgrib

@@ -1,0 +1,15 @@
+#%Module
+
+proc ModulesHelp { } {
+    puts stderr "This module sets the path and environment variables for mexcdf-r4053"
+    puts stderr "     see http://mexcdf.sourceforge.net/ for more information      "
+    puts stderr ""
+}
+module-whatis "SNCTOOLS is a collection of MATLAB codes that were written to provide read/write access to netCDF files. MEXNC is a mex-file interface to NetCDF files for MATLAB, and has roughly a one-to-one equivalence with the C API for NetCDF."
+
+set mexcdf_dir  /apps/mexcdf/r4053-matlab-r2011b 
+
+setenv MATLAB_JAVA $mexcdf_dir/netcdfAll-4.2.jar:$mexcdf_dir/snctools/classes
+setenv MATLABPATH $mexcdf_dir/mexnc:$mexcdf_dir/snctools
+
+# conflict 

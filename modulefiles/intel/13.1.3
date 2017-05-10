@@ -1,0 +1,81 @@
+#%Module1.0
+#
+#
+
+proc ModulesHelp { } {
+	global version
+	
+	puts stderr "Intel Composer XE $version - Enables the use of intel compilers\n"
+}
+
+module-whatis "Enables Intel Composer XE"
+
+set	version	2013.5.192
+set	topdir	/apps/intel/composer_xe_$version
+
+# /apps/intel/composer_xe_$version/bin/intel64/idbvars.sh
+prepend-path	NLSPATH $topdir/debugger/intel64/locale/%l_%t/%N
+prepend-path	PATH	$topdir/bin/intel64
+#prepend-path	PATH	$topdir/bin/intel64_mic
+prepend-path	PATH	$topdir/debugger/gui/intel64
+setenv		IDB_HOME	$topdir/bin/intel64
+# debuggervars.sh, assuming py27
+set		pyver	py27
+set		ppref	$topdir/debugger/gdb/intel64/py27
+#set		ppref_mic	$topdir/debugger/gdb/intel64_mic/py27
+#setenv		GDB_CROSS	$topdir/debugger/gdb/intel64_mic/py27/bin/gdb-mic
+#setenv		GDB_SERVERMIC	$topdir/debugger/gdb/target/mic/bin/gdbserver
+prepend-path	PATH	$ppref/bin
+prepend-path	NLSPATH	$ppref/share/locale/%l_%t/%N
+#prepend-path	PATH	$ppref_mic/py27/bin
+set		tbbroot	$topdir/tbb
+set		gcc	gcc4.4
+setenv		TBBROOT	$tbbroot
+#prepend-path	MIC_LD_LIBRARY_PATH	$tbbroot/lib/mic
+#prepend-path	MIC_LIBRARY_PATH	$tbbroot/lib/mic
+prepend-path	LD_LIBRARY_PATH		$tbbroot/lib/intel64/$gcc
+prepend-path	LIBRARY_PATH		$tbbroot/lib/intel64/$gcc
+prepend-path	CPATH			$tbbroot/include
+#mklvars.sh
+setenv		MKLROOT			$topdir/mkl
+set		mkl_target_arch		intel64
+setenv		MKL_TARGET_ARCH		$mkl_target_arch
+#set		mkl_mic_arch		mic
+#setenv		MKL_MIC_ARCH		$mkl_mic_arch
+prepend-path	LD_LIBRARY_PATH		$topdir/compiler/lib/$mkl_target_arch
+prepend-path	LD_LIBRARY_PATH		$topdir/mkl/lib/$mkl_target_arch
+prepend-path	LIBRARY_PATH		$topdir/compiler/lib/$mkl_target_arch
+prepend-path	LIBRARY_PATH		$topdir/mkl/lib/$mkl_target_arch
+#prepend-path	MIC_LD_LIBRARY_PATH	$topdir/compiler/lib/$mkl_mic_arch
+#prepend-path	MIC_LD_LIBRARY_PATH	$topdir/mkl/lib/$mkl_mic_arch
+#prepend-path	NLSPATH			$topdir/mkl/lib/$mkl_target_arch/locale/%l_%t/%N
+#prepend-path	NLSPATH			$topdir/mkl/lib/intel64/locale/%l_%t/%N
+prepend-path	MANPATH			$topdir/man/en_US
+prepend-path	INCLUDE			$topdir/mkl/include
+prepend-path	CAPTH	$topdir/mkl/include
+#ippvars.sh
+prepend-path	CPATH	$topdir/ipp/include
+prepend-path	LD_LIBRARY_PATH	$topdir/ipp/lib/intel64
+prepend-path	LD_LIBRARY_PATH	$topdir/compiler/lib/intel64
+prepend-path	LIBRARY_PATH	$topdir/ipp/intel64
+prepend-path	LIBRARY_PATH	$topdir/compiler/lib/intel64
+prepend-path	NLSPATH		$topdir/ipp/lib/intel64/locale/%l_%t/%N
+#compilervars_arch.sh
+prepend-path	PATH	$topdir/bin/intel64
+prepend-path	PATH	$topdir/mpirt/bin/intel64
+#prepend-path	MIC_LD_LIBRARY_PATH	$topdir/compiler.lib/mic
+#prepend-path	MIC_LD_LIBRARY_PATH	$topdir/mpirt/lib/mic
+prepend-path	LD_LIBRARY_PATH		$topdir/compiler/lib/intel64
+prepend-path	LD_LIBRARY_PATH		$topdir/mpirt/lib/intel64
+prepend-path	LIBRARY_PATH	$topdir/compiler/lib/intel64
+prepend-path	NLSPATH		$topdir/compiler/lib/intel64/locale/%l_%t/%N
+prepend-path	INTEL_LICENSE_FILE	$topdir/licenses
+setenv		LANGUAGE_TERRITORY	en_US
+prepend-path	MANPATH		$topdir/man/en_US
+
+# Only allow one instance of compiler to load
+conflict pgi,intel
+family compiler
+
+# Setup File families
+append-path MODULEPATH /apps/modules/modulefamilies/intel

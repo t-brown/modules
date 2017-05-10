@@ -1,0 +1,28 @@
+#%Module######################################################################
+##
+##     hdf5
+##
+proc ModulesHelp { } {
+puts stderr "\tncarg - sets up the HDF5 library"
+puts stderr "\t\tto work with the Intel compilers.\n"
+puts stderr "\tPath $path/*\n"
+puts stderr "\tVersion $version\n"
+}
+
+set compiler intel
+set sys         [uname sysname]
+set base        /apps/hdf5
+set version     1.8.14-intel-impi
+set path        $base/$version
+
+setenv HDF5 $path
+
+append-path PATH $path/bin
+append-path MANPATH $path/man
+
+setenv HDF5_INCLUDE_OPTS " -I$path/include"
+setenv HDF5_LINK_OPTS "-L$path/lib -lhdf5_hl -lhdf5"
+
+prepend-path LD_LIBRARY_PATH $path/lib
+
+conflict hdf5

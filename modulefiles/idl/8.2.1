@@ -1,0 +1,15 @@
+#%Module######################################################################
+##
+##      IDL 
+##
+proc ModulesHelp { } {
+	puts stderr "IDL"
+
+}
+
+set ITT_DIR /apps/idl
+set IDL_DIR /apps/idl/idl82
+append-path PATH $IDL_DIR/bin/
+prepend-path LM_LICENSE_FILE $ITT_DIR/license/license.dat
+
+conflict idl

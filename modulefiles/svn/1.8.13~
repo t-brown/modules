@@ -1,0 +1,17 @@
+#%Module######################################################################
+##
+##      svn compiler modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use svn"
+}
+set base  /apps/subversion
+set ver 1.8.13
+
+prepend-path PATH            $base/$ver/bin
+prepend-path LD_LIBRARY_PATH $base/$ver/lib
+
+#prepend-path PATH            $base/bin
+#prepend-path LD_LIBRARY_PATH $base/lib
+
+conflict svn

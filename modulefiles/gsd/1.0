@@ -1,0 +1,10 @@
+#%Module######################################################################
+##
+##      gsd
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the environment variables for gsd path usage"
+}
+
+setenv GSDPUBLIC /scratch4/BMC/public
+

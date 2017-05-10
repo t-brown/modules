@@ -1,0 +1,20 @@
+#%Module######################################################################
+##
+##      Totalview Debugger
+##
+proc ModulesHelp { } {
+        puts stderr "Totalview Debugger"
+
+}
+
+set TOTALVIEW /apps/toolworks/totalview.8.14.1-8
+set MEMSCAPE /apps/toolworks/memoryscape.3.6.1-8
+setenv TVDSVRLAUNCHCMD ssh
+prepend-path MANPATH $TOTALVIEW/man
+prepend-path PATH $TOTALVIEW/bin
+prepend-path PATH $MEMSCAPE/bin
+prepend-path INCLUDE $TOTALVIEW/include
+#setenv LM_LICENSE_FILE /apps/toolworks/totalview.8.14.1-8/toolworks/flexlm-11.11.1-1/license.dat
+setenv LM_LICENSE_FILE /apps/toolworks/license.dat
+
+conflict totalview

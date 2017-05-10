@@ -1,0 +1,39 @@
+#%Module 6.2.0 #####################################################################
+
+proc ModulesHelp { } {
+    global helpmsg
+    puts stderr "\t$helpmsg\n"
+}
+
+set version 6.2.0
+set major 6
+set minor 2
+
+set topdir /apps/gcc/$version
+
+prepend-path PATH            $topdir/bin
+prepend-path LIBRARY_PATH    $topdir/lib64
+prepend-path LD_LIBRARY_PATH $topdir/lib64
+
+prepend-path INCLUDE         $topdir/include
+prepend-path MANPATH         $topdir/share/man
+
+# Only allow one instance of compiler to load
+conflict pgi,intel
+family compiler
+
+# Setup File families
+append-path MODULEPATH /apps/modules/modulefamilies/gcc
+
+# GCC needs the updated binutils? Not sure --Raghu.Reddy
+###if { [ module-info mode load ]} {
+###        if { ! [ is-loaded binutils ]} {
+###                module load binutils
+###        }
+###}
+###
+###if { [ module-info mode remove ]} {
+###        if { [ is-loaded binutils ]} {
+###                module unload binutils
+###        }
+###}

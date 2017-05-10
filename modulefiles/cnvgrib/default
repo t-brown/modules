@@ -1,0 +1,18 @@
+#%Module######################################################################
+##
+##      cnvgrib
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use cnvgrib"
+}
+
+set sys         [uname sysname]
+set base        /apps/cnvgrib
+set ver         1.4.0
+set path        $base/$ver
+
+if { $sys == "Linux" } {
+   prepend-path PATH $path/bin
+}
+
+conflict cnvgrib

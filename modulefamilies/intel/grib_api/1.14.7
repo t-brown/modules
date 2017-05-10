@@ -1,0 +1,19 @@
+#%Module######################################################################
+##
+##     grib_api
+##
+proc ModulesHelp { } {
+        puts stderr "Sets up the paths you need to use grib_api"
+}
+
+set sys         [uname sysname]
+set base        /apps/grib_api
+set ver         1.14.7
+set comp        intel/15.6.233
+set path        $base/$ver/$comp
+
+    setenv          GRIB_API_ROOT   $path
+    prepend-path    PATH            $path/bin
+    prepend-path    LD_LIBRARY_PATH $path/lib
+
+conflict grib_api

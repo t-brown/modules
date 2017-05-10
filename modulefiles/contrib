@@ -1,0 +1,10 @@
+#%Module######################################################################
+##
+##     contrib 
+##
+proc ModulesHelp { } {
+        puts stderr "Adds path to contrib modules to MODULEPATH"
+}
+
+
+module use -a /contrib/modulefiles

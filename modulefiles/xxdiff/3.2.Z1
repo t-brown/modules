@@ -1,0 +1,18 @@
+#%Module######################################
+# note that this is read by a Tcl interpretor
+#
+proc ModulesHelp { } {
+global path version
+puts stderr "\txxdiff - sets up the xxdiff"
+puts stderr "\tPath $path/*\n"
+puts stderr "\tVersion $version\n"
+}
+
+module-whatis "xxdiff graphical diff utility"
+
+set version 3.2.Z1
+set path /apps/xxdiff/$version
+
+prepend-path PATH $path/bin
+
+conflict xxdiff
